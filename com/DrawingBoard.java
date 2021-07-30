@@ -2,7 +2,8 @@ package com;
 
 import java.util.Arrays;
 
-public class DrawingBoard {
+    //the board acts as a factory in the sense that it is responsible of creating shapes in runtime
+public class DrawingBoard { 
 
     int storageSize;
     Shape[] shapes;
@@ -18,7 +19,8 @@ public class DrawingBoard {
 
     }
 
-    public void add(String name,double... properties) {
+    //the portion responsible for creating the objects
+    public void add(String name,double... properties) { 
 
         if (storageSize == shapes.length) 
             shapes = Arrays.copyOf(shapes, shapes.length * 2);
@@ -64,7 +66,8 @@ public class DrawingBoard {
         for (int i = 0;i < storageSize;i++) {
 
             System.out.printf("Shape: ", i);
-            shapes[i].getInfo();
+            //classic Polymorphism
+            shapes[i].getInfo();  
         }
     }
 
@@ -87,7 +90,9 @@ public class DrawingBoard {
         double max = 0;
 
         for (int i =0;i<storageSize;i++) {
-             if (shapes[i].whoAmI().contains("3D")) {
+
+            //ideally would have used x isinstance y to check wether the casting would work, but the task excplicitly required this
+             if (shapes[i].whoAmI().contains("3D")) { 
                  threeDimensional t = (threeDimensional) shapes[i];
                  if (t.getVolume() > max) {
                      max = t.getVolume();
